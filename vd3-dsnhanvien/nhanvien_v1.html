@@ -1,0 +1,46 @@
+<html>
+    <body>
+        <div id="main-content">
+        </div>
+        <button id="button-load" onClick="loadNhanVien()">Load</button>
+        <script>
+            function hienThi(dsNhanVien, dsDuAn) {
+                let html = "";
+                for(let i = 0; i < dsNhanVien.length; i++){
+                    const nhanVien = dsNhanVien[i];
+                    for(let j = 0; j < dsDuAn.length; j++) {
+                        const duAn = dsDuAn[j];
+                        if(duAn.id === nhanVien.duAnId) {
+                            html += `<li>${nhanVien.ten} - ${duAn.ten}</li>`;
+                        }
+                    }
+                }
+                return `<ul>${html}</ul>`;
+            }
+            
+            // const dsNhanVien = [
+            //     {id: 1, ten: 'nv 1', duAnId: 1}, 
+            //     {id: 2, ten: 'nv 2', duAnId: 2}, 
+            //     {id: 3, ten: 'nv 3', duAnId: 1}
+            // ];
+            // const dsDuAn = [
+            //     {id: 1, ten: 'du an 1'}, 
+            //     {id: 2, ten: 'du an 2'}
+            // ];
+
+            const dsNhanVien = Array(100).fill(0).map((v,i) => ({
+                id: i,
+                ten: `nv ${i}`,
+                duAnId: 10000000 - i - 1
+            }));
+            const dsDuAn = Array(10000000).fill(0).map((v,i) => ({
+                id: i,
+                ten: `du an ${i}`
+            }));
+            
+            function loadNhanVien() {
+                document.getElementById('main-content').innerHTML = hienThi(dsNhanVien, dsDuAn);
+            }
+        </script>
+    </body>
+</html>

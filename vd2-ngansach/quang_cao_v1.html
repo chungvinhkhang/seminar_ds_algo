@@ -1,0 +1,37 @@
+<html>
+    <body>
+        <form id="main-form">
+            <label>Giá khởi điểm: </label>
+            <input type="number" value="1000000" id="input-khoidiem"/>
+            <label>Lượt click: </label>
+            <input type="number" value="2" id="input-soclick"/>
+            <label>Ngân sách: </label>
+            <input type="number" value="1000000" id="input-ngansach"/>
+            <input type="submit" value="Lưu"/>
+        </form>
+        <script>
+            function kiemTraHopLe(khoiDiem, soClick, nganSach) {
+                let gia = khoiDiem;
+                let tong = khoiDiem;
+                for(let i = 1; i < soClick; i++) {
+                    gia += 5000;
+                    tong += gia;
+                }
+                console.log(tong);
+                return nganSach >= tong;
+            }
+
+            document.getElementById('main-form').addEventListener("submit", function(e) {
+                e.preventDefault();
+                const khoiDiem = parseInt(document.getElementById('input-khoidiem').value);
+                const soClick = parseInt(document.getElementById('input-soclick').value);
+                const nganSach = parseInt(document.getElementById('input-ngansach').value);
+                if(kiemTraHopLe(khoiDiem, soClick, nganSach)) {
+                    alert('hợp lệ. tiến hành lưu');
+                } else {
+                    alert('không hợp lệ');
+                }
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,33 @@
+<html>
+    <body>
+        <form id="main-form">
+            <label>Giá khởi điểm: </label>
+            <input type="number" value="1000000" id="input-khoidiem"/>
+            <label>Lượt click: </label>
+            <input type="number" value="2" id="input-soclick"/>
+            <label>Ngân sách: </label>
+            <input type="number" value="1000000" id="input-ngansach"/>
+            <input type="submit" value="Lưu"/>
+        </form>
+        <script>
+            function kiemTraHopLeBangCapSoCong(khoiDiem, soClick, nganSach) {
+                const tong = soClick * (2 * khoiDiem + (soClick - 1) * 5000) / 2;
+                console.log(tong);
+                return nganSach >= tong;
+            }
+
+
+            document.getElementById('main-form').addEventListener("submit", function(e) {
+                e.preventDefault();
+                const khoiDiem = parseInt(document.getElementById('input-khoidiem').value);
+                const soClick = parseInt(document.getElementById('input-soclick').value);
+                const nganSach = parseInt(document.getElementById('input-ngansach').value);
+                if(kiemTraHopLeBangCapSoCong(khoiDiem, soClick, nganSach)) {
+                    alert('hợp lệ. tiến hành lưu');
+                } else {
+                    alert('không hợp lệ');
+                }
+            });
+        </script>
+    </body>
+</html>

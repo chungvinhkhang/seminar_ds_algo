@@ -1,0 +1,40 @@
+<html>
+    <body>
+        <div id="main-content">
+        </div>
+        <button id="button-load" onClick="loadNhanVien()">Load</button>
+        <script>
+            function hienThiCoBreak(dsNhanVien, dsDuAn) {
+                let html = "";
+                for(let i = 0; i < dsNhanVien.length; i++){
+                    const nhanVien = dsNhanVien[i];
+                    // tim du an thoa dk id=duAnId
+                    for(let j = 0; j < dsDuAn.length; j++) {
+                        const duAn = dsDuAn[j];
+                        if(duAn.id === nhanVien.duAnId) {
+                            html += `<li>${nhanVien.ten} - ${duAn.ten}</li>`;
+                            break;
+                        }
+                    }
+                }
+                return `<ul>${html}</ul>`;
+            }
+
+            const dsNhanVien = Array(100).fill(0).map((v,i) => ({
+                id: i,
+                ten: `nv ${i}`,
+                duAnId: 10000000 - i - 1
+            }));
+            const dsDuAn = Array(10000000).fill(0).map((v,i) => ({
+                id: i,
+                ten: `du an ${i}`
+            }));
+            
+            function loadNhanVien() {
+                document.getElementById('main-content').innerHTML = hienThiCoBreak(dsNhanVien, dsDuAn);
+            }
+           
+            
+        </script>
+    </body>
+</html>

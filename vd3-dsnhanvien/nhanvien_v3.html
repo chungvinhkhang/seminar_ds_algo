@@ -1,0 +1,37 @@
+<html>
+    <body>
+        <div id="main-content">
+        </div>
+        <button id="button-load" onClick="loadNhanVien()">Load</button>
+        <script>
+            function hienThiVoiTimKiemTheoBangBam(dsNhanVien, dsDuAn) {
+                let html = "";
+                let tenDuAnBamTheoId = {};
+                for(let i = 0; i < dsDuAn.length; i++){
+                    const duAn = dsDuAn[i];
+                    tenDuAnBamTheoId[duAn.id] = duAn.ten;
+                }
+                for(let i = 0; i < dsNhanVien.length; i++){
+                    const nhanVien = dsNhanVien[i];
+                    const tenDuAn = tenDuAnBamTheoId[nhanVien.duAnId];
+                    html += `<li>${nhanVien.ten} - ${tenDuAn}</li>`;
+                }
+                return `<ul>${html}</ul>`;
+            }
+
+            const dsNhanVien = Array(100).fill(0).map((v,i) => ({
+                id: i,
+                ten: `nv ${i}`,
+                duAnId: 10000000 - i - 1
+            }));
+            const dsDuAn = Array(10000000).fill(0).map((v,i) => ({
+                id: i,
+                ten: `du an ${i}`
+            }));
+            
+            function loadNhanVien() {
+                document.getElementById('main-content').innerHTML = hienThiVoiTimKiemTheoBangBam(dsNhanVien, dsDuAn);
+            }
+        </script>
+    </body>
+</html>
